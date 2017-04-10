@@ -6,8 +6,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +18,7 @@ import java.util.List;
  */
 public abstract class BaseScript {
     private static String BROWSER = BrowserType.CHROME;
-    private static List<String> errors;
+    private static List<String> errors = new ArrayList<>();
 
     public void addError(String error) {
         errors.add(error);
@@ -41,6 +44,8 @@ public abstract class BaseScript {
             case "iexplore":
                 System.setProperty("webdriver.ie.driver",
                         new File(BaseScript.class.getResource("/IEDriverServer.exe").getFile()).getPath());
+                DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+                //capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
                 return new InternetExplorerDriver();
 
             case "MicrosoftEdge":
@@ -55,4 +60,9 @@ public abstract class BaseScript {
             }
         }
     }
+
+    /**
+     * Created by User on 08.04.2017.
+     */
+
 }
