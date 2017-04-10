@@ -7,12 +7,9 @@ import Utils.BaseScript;
  */
 public class MainTest extends BaseScript{
     public static void main(String[] args) {
-        System.out.println(getBROWSER());
         Tests tests = new Tests();
-        tests.PageLoad();
-        tests.LoginTest();
-        tests.CheckMenu();
-        tests.LogOut();
-        tests.quit();
+
+        tests.ScriptA_LoginTest();  // Скрипт А. Логин в Админ панель
+        tests.ScriptB_MainMenuTest(); //Скрипт Б. Проверка работоспособности главного меню Админ панели
     }
 }
